@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administração</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Área Admin</h1>
+
+  <input type="password" id="adminPassword" placeholder="Senha Admin">
+  <button onclick="login()">Entrar</button>
+
+  <div id="adminPanel" style="display: none;">
+    <h2>Gerenciar Seções</h2>
+    <textarea id="sections" placeholder="Adicione ou edite as seções, uma por linha"></textarea>
+    <button onclick="saveSections()">Salvar Seções</button>
+  </div>
+
+  <script>
+    function login() {
+      const password = document.getElementById('adminPassword').value;
+      if (password === 'Nova@123') {
+        document.getElementById('adminPanel').style.display = 'block';
+      } else {
+        alert('Senha incorreta');
+      }
+    }
+
+    function saveSections() {
+      const sections = document.getElementById('sections').value;
+      localStorage.setItem('sections', sections);
+      alert('Seções salvas');
+    }
+
+    // Carregar as seções salvas
+    window.onload = function() {
+      const sections = localStorage.getItem('sections');
+      if (sections) {
+        document.getElementById('sections').value = sections;
+      }
+    };
+  </script>
+
+</body>
+</html>
